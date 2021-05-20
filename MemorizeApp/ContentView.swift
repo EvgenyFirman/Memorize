@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel: 
     var body: some View {
         return HStack{
             ForEach(0..<4) {_ in
-                ItemView()
+                ItemView(card: <#T##MemoryGame<String>.Card#>)
             }
         }
     }
@@ -24,13 +25,13 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct ItemView: View {
-    var isFaceUp: Bool = false
+    var card: MemoryGame<String>.Card
     var body: some View {
         ZStack {
-            if isFaceUp {
+            if card.isFaceUp {
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0).padding()
-                Text("☠️").font(Font.largeTitle)
+                Text(card.content).font(Font.largeTitle)
             } else {
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.orange).padding()
             }
