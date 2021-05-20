@@ -3,16 +3,18 @@
 //  MemorizeApp
 //
 //  Created by Евгений Фирман on 18.05.2021.
-//
+
 
 import SwiftUI
 
 struct ContentView: View {
-    var viewModel: 
+    var viewModel: EmojiMemory
     var body: some View {
         return HStack{
-            ForEach(0..<4) {_ in
-                ItemView(card: <#T##MemoryGame<String>.Card#>)
+            ForEach(viewModel.cards) {card in
+                ItemView(card: card).onTapGesture(perform: {
+                    viewModel.choose(card: card)
+                })
             }
         }
     }
@@ -20,7 +22,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: EmojiMemory())
     }
 }
 
