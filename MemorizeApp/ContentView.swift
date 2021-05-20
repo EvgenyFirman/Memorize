@@ -1,16 +1,20 @@
 //
 //  ContentView.swift
 //  MemorizeApp
-//
 //  Created by Евгений Фирман on 18.05.2021.
 
-
+// Importing SwiftUI library
 import SwiftUI
 
+
 struct ContentView: View {
-    var viewModel: EmojiMemory
+    // init emojiMemory Instance
+    @ObservedObject var viewModel: EmojiMemory
+    
     var body: some View {
+        // making an HStack
         return HStack{
+            // Looping for each model card
             ForEach(viewModel.cards) {card in
                 ItemView(card: card).onTapGesture(perform: {
                     viewModel.choose(card: card)
@@ -20,12 +24,13 @@ struct ContentView: View {
     }
 }
 
+// Default contentView Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(viewModel: EmojiMemory())
     }
 }
-
+// Extended ItemView
 struct ItemView: View {
     var card: MemoryGame<String>.Card
     var body: some View {
