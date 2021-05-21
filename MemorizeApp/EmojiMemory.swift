@@ -1,7 +1,6 @@
 //
 //  EmojiMemory.swift
 //  MemorizeApp
-//
 //  Created by Евгений Фирман on 19.05.2021.
 //
 
@@ -27,7 +26,6 @@ class EmojiMemory: ObservableObject {
         }
         // MARK: - Intent(s)
         func choose(card: MemoryGame<String>.Card){
-            
             model.choose(card: card)
         }
     }
