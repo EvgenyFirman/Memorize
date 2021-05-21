@@ -8,7 +8,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    // init emojiMemory Instance
+    // init emojiMemory Instance, observe changes
     @ObservedObject var viewModel: EmojiMemory
     
     var body: some View {
@@ -34,15 +34,18 @@ struct ContentView_Previews: PreviewProvider {
 struct ItemView: View {
     var card: MemoryGame<String>.Card
     var body: some View {
-        ZStack {
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0).padding()
-                Text(card.content).font(Font.largeTitle)
-            } else {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.orange).padding()
-            }
-            
-        }.foregroundColor(Color.orange)
+        GeometryReader(content: { geometry in
+            ZStack {
+                if card.isFaceUp {
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0).padding()
+                    Text(card.content).font(Font.largeTitle)
+                } else {
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.orange).padding()
+                }
+                
+            }.foregroundColor(Color.orange)
+        })
+        
     }
 }
